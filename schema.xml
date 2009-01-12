@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<schema version="1.0" xmlns="http://www.apple.com/metadata"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://www.apple.com/metadata file:///System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Resources/MetadataSchema.xsd">
+    <note>
+    Custom attributes that this metadata importer supports.  Types
+	are CFString, CFNumber, CFDate, CFBoolean and CFData. Multivalued attributes
+	are arrays of the above basic data types.
+	</note>
+    <attributes>
+        <attribute name="net_sourceforge_openbabel_NumMols" multivalued="false" type="CFNumber"/>
+        <attribute name="net_sourceforge_openbabel_Formula" multivalued="true" type="CFString"/>
+        <attribute name="net_sourceforge_openbabel_DisplayFormula" multivalued="true" type="CFString"/>
+        <attribute name="net_sourceforge_openbabel_Mass" multivalued="true" type="CFNumber"/>
+        <attribute name="net_sourceforge_openbabel_ExactMass" multivalued="true" type="CFNumber"/>
+        <attribute name="net_sourceforge_openbabel_SMILES" multivalued="true" type="CFString"/>
+        <attribute name="net_sourceforge_openbabel_InChI" multivalued="true" type="CFString"/>
+        <attribute name="net_sourceforge_openbabel_Chirality" multivalued="true" type="CFBoolean"/>
+        <attribute name="net_sourceforge_openbabel_NumAtoms" multivalued="true" type="CFNumber"/>
+        <attribute name="net_sourceforge_openbabel_NumBonds" multivalued="true" type="CFNumber"/>
+        <attribute name="net_sourceforge_openbabel_NumResidues" multivalued="true" type="CFNumber"/>
+        <attribute name="net_sourceforge_openbabel_TotalCharge" multivalued="true" uniqued="true" type="CFString"/>
+        <attribute name="net_sourceforge_openbabel_Dimension" multivalued="true" uniqued="true" type="CFString"/>
+        <attribute name="net_sourceforge_openbabel_Energy" multivalued="true" uniqued="true" type="CFNumber"/>
+		<attribute name="net_sourceforge_openbabel_Sequence" multivalued="true" type="CFString"/>
+		<attribute name="net_sourceforge_openbabel_Warnings" multivalued="true" type="CFString"/>
+		<attribute name="net_sourceforge_openbabel_Fingerprint" multivalued="true" type="CFString"/>
+    </attributes>
+
+    <types>
+        <type name="net.sourceforge.openbabel.mol2">
+            <note>
+		The keys that this metadata importer handles.
+            </note>
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_NumResidues
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Sequence
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+			</allattrs>
+            <displayattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_NumResidues
+		net_sourceforge_openbabel_Sequence
+            </displayattrs>
+        </type>
+        <type name="net.sourceforge.openbabel.gpr">
+            <allattrs>
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+
+            </allattrs>
+            <displayattrs>
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+            </displayattrs>
+        </type>
+        <type name="net.sourceforge.openbabel.xyz">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+            </displayattrs>
+        </type>
+        <type name="net.sourceforge.openbabel.pdb">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_NumResidues
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Sequence
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumResidues
+		net_sourceforge_openbabel_Sequence
+            </displayattrs>
+        </type>
+        <type name="net.sourceforge.openbabel.cml">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_Dimension
+            </displayattrs>
+        </type>
+        <type name="net.sourceforge.openbabel.mdl">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_Dimension
+            </displayattrs>
+        </type>
+		<type name="net.sourceforge.openbabel.cdx">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+            </displayattrs>
+        </type>
+		<type name="net.sourceforge.openbabel.cdxml">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+            </displayattrs>
+        </type>
+		<type name="net.sourceforge.openbabel.smiles">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+            </displayattrs>
+        </type>
+    </types>
+</schema>
+
