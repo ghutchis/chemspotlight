@@ -77,7 +77,6 @@
         net_sourceforge_openbabel_Dimension
 		net_sourceforge_openbabel_Warnings
 		net_sourceforge_openbabel_Fingerprint
-
             </allattrs>
             <displayattrs>
 	    net_sourceforge_openbabel_DisplayFormula
@@ -103,7 +102,6 @@
         net_sourceforge_openbabel_Dimension
 		net_sourceforge_openbabel_Warnings
 		net_sourceforge_openbabel_Fingerprint
-
             </allattrs>
             <displayattrs>
         net_sourceforge_openbabel_NumMols
@@ -129,7 +127,6 @@
 		net_sourceforge_openbabel_Sequence
 		net_sourceforge_openbabel_Warnings
 		net_sourceforge_openbabel_Fingerprint
-
             </allattrs>
             <displayattrs>
         net_sourceforge_openbabel_NumMols
@@ -157,7 +154,6 @@
         net_sourceforge_openbabel_Dimension
 		net_sourceforge_openbabel_Warnings
 		net_sourceforge_openbabel_Fingerprint
-
             </allattrs>
             <displayattrs>
         net_sourceforge_openbabel_NumMols
@@ -184,7 +180,6 @@
         net_sourceforge_openbabel_Dimension
 		net_sourceforge_openbabel_Warnings
 		net_sourceforge_openbabel_Fingerprint
-
             </allattrs>
             <displayattrs>
         net_sourceforge_openbabel_NumMols
@@ -195,7 +190,7 @@
         net_sourceforge_openbabel_Dimension
             </displayattrs>
         </type>
-		<type name="net.sourceforge.openbabel.cdx">
+		<type name="com.cambridgesoft.cdx">
             <allattrs>
 	    net_sourceforge_openbabel_NumMols
 	    net_sourceforge_openbabel_Formula
@@ -220,7 +215,7 @@
         net_sourceforge_openbabel_NumAtoms
             </displayattrs>
         </type>
-		<type name="net.sourceforge.openbabel.cdxml">
+		<type name="com.cambridgesoft.cdxml">
             <allattrs>
 	    net_sourceforge_openbabel_NumMols
 	    net_sourceforge_openbabel_Formula
@@ -268,6 +263,84 @@
 	    net_sourceforge_openbabel_Mass
         net_sourceforge_openbabel_Chirality
         net_sourceforge_openbabel_NumAtoms
+            </displayattrs>
+        </type>
+        <type name="com.gaussian.cube">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_Dimension
+            </displayattrs>
+        </type>
+        <type name="com.gaussian.output">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_Dimension
+            </displayattrs>
+        </type>
+        <type name="com.gaussian.fchk">
+            <allattrs>
+	    net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_Formula
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+	    net_sourceforge_openbabel_ExactMass
+	    net_sourceforge_openbabel_SMILES
+	    net_sourceforge_openbabel_InChI
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_NumBonds
+        net_sourceforge_openbabel_TotalCharge
+        net_sourceforge_openbabel_Dimension
+		net_sourceforge_openbabel_Warnings
+		net_sourceforge_openbabel_Fingerprint
+            </allattrs>
+            <displayattrs>
+        net_sourceforge_openbabel_NumMols
+	    net_sourceforge_openbabel_DisplayFormula
+	    net_sourceforge_openbabel_Mass
+        net_sourceforge_openbabel_Chirality
+        net_sourceforge_openbabel_NumAtoms
+        net_sourceforge_openbabel_Dimension
             </displayattrs>
         </type>
     </types>
