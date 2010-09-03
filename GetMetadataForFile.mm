@@ -16,13 +16,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ***********************************************************************/
 
-// Current: Version 2.0, released 2010-07-01
+// Current: Version 2.0, released 2010-XX-XX
 // More information on ChemSpotlight, including version history can be found at:
 // http://geoffhutchison.net/projects/chem/
 
 // TODO: 
 //       more file types (need support in Open Babel)
 //       support for compressed filetypes (e.g., 1ABC.pdb.gz) -- need Apple bugfix
+//      support for floating-point masses -- need Apple bugfix
 //       fragments / fingerprints for similarity searching and improved substructure searching
 //       molecular descriptor metadata (e.g., LogP, etc.)
 
