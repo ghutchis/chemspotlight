@@ -13,6 +13,7 @@
 		834CD5C00A1F849E00AAF0BD /* Subscripts.h in Headers */ = {isa = PBXBuildFile; fileRef = 834CD5BF0A1F849E00AAF0BD /* Subscripts.h */; };
 		83562B9D0832E01C0068C052 /* Babel.icns in Resources */ = {isa = PBXBuildFile; fileRef = 83562B9C0832E01C0068C052 /* Babel.icns */; };
 		838980B10A29047C00E896BA /* Superscripts.h in Headers */ = {isa = PBXBuildFile; fileRef = 838980B00A29047C00E896BA /* Superscripts.h */; };
+		838B8852122DA02200BE20F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838B8851122DA02200BE20F2 /* Foundation.framework */; };
 		8D576312048677EA00EA77CD /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 08FB77B6FE84183AC02AAC07 /* main.mm */; settings = {ATTRIBUTES = (); }; };
 		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
 		8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49A704867FD3000E48DA /* InfoPlist.strings */; };
@@ -42,6 +43,7 @@
 		834CD5BF0A1F849E00AAF0BD /* Subscripts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subscripts.h; sourceTree = "<group>"; };
 		83562B9C0832E01C0068C052 /* Babel.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Babel.icns; sourceTree = "<group>"; };
 		838980B00A29047C00E896BA /* Superscripts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Superscripts.h; sourceTree = "<group>"; };
+		838B8851122DA02200BE20F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D576316048677EA00EA77CD /* ChemSpotlight.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChemSpotlight.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D576317048677EA00EA77CD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C86B05260671AA6E00DD9006 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
@@ -58,6 +60,7 @@
 				8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */,
 				C86B05270671AA6E00DD9006 /* CoreServices.framework in Frameworks */,
 				834A3B0F122C3F330070104D /* libopenbabel.4.dylib in Frameworks */,
+				838B8852122DA02200BE20F2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +81,7 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				838B8851122DA02200BE20F2 /* Foundation.framework */,
 				834A3B0E122C3F330070104D /* libopenbabel.4.dylib */,
 				8305B04209EEF8BB006069C7 /* libinchi.0.dylib */,
 				C86B05260671AA6E00DD9006 /* CoreServices.framework */,

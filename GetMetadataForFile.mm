@@ -29,7 +29,7 @@ GNU General Public License for more details.
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreServices/CoreServices.h>
 // Add this if you want NSLog -- to log all entries (helps with debugging crashes)
-// #import <Foundation/Foundation.h>
+#import <Foundation/Foundation.h>
 
 #include <string>
 #include <openbabel/mol.h>
@@ -64,7 +64,7 @@ Boolean GetMetadataForFile(void* thisInterface,
 	if (!attributes || !pathToFile)
 		return(FALSE);
 	
-	// NSLog(@" ChemSpotlight importing file %@", pathToFile);
+  NSLog(@" ChemSpotlight importing file %@", pathToFile);
 	
 	// convert the CFString to a c-style string, and run through a C++ ifstream for Open Babel
 	char inFile[BUFF_SIZE];
@@ -99,7 +99,7 @@ Boolean GetMetadataForFile(void* thisInterface,
 	CFMutableArrayRef arrayFormula = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
 	CFMutableArrayRef arrayDisplayFormula = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
 	CFMutableArrayRef arrayMass = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
-	CFMutableArrayRef arrayExactMass = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
+	CFMutableArrayRef arrayDisplayMass = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
 	CFMutableArrayRef arraySMILES = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
 	CFMutableArrayRef arrayInChI = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
 	CFMutableArrayRef arrayChirality = CFArrayCreateMutable(NULL, 0, &kCFTypeArrayCallBacks);
@@ -159,24 +159,27 @@ Boolean GetMetadataForFile(void* thisInterface,
 		
 		//////////////
 		// Grab the formula, molecular weight, exact mass, etc.
-		double mw = 0.0;
-		double mass = 0.0;
+		double mw = 0.0; // standard mol. weight
+		double mass = 0.0; // exact mass
+    int roundedMW = 0;
 		stringstream formula;
-		CFNumberRef tempNumberRef;
 		CalculateFormulaAndMasses(mol, mw, mass, formula); // do this all at once, only one loop through all atoms
-		mw = trunc(10000.0 * mw) / 10000.0; // trim molecular weight to 4 decimals
 		if (arrayMass) {
-			tempNumberRef = CFNumberCreate(NULL, kCFNumberDoubleType, &mw);
+      // FIXME: Bug in 10.6.x finder crashes on doubles. Yuck.
+      // For now, we cast to int
+      roundedMW = (int)mw;
+			CFNumberRef tempNumberRef = CFNumberCreate(NULL, kCFNumberIntType, &roundedMW);
 			if (tempNumberRef) {
 				CFArrayAppendValue(arrayMass, tempNumberRef);
-//				CFRelease(tempNumberRef);
+				CFRelease(tempNumberRef);
 			}
 		}
-		if (arrayExactMass) {
-			tempNumberRef = CFNumberCreate(NULL, kCFNumberDoubleType, &mass);
-			if (tempNumberRef) {
-				CFArrayAppendValue(arrayExactMass, tempNumberRef);
-//				CFRelease(tempNumberRef);
+    // Convert for a string for #@%# Finder
+		if (arrayDisplayMass) {
+      CFStringRef displayMassRef = CFStringCreateWithFormat(NULL, 0, CFSTR("%12.4f"), mw);
+			if (displayMassRef) {
+				CFArrayAppendValue(arrayDisplayMass, displayMassRef);
+				CFRelease(displayMassRef);
 			}
 		}
 		
@@ -189,9 +192,9 @@ Boolean GetMetadataForFile(void* thisInterface,
 			CFStringRef form = CFStringCreateWithCString(NULL, (formula.str()).c_str(), kCFStringEncodingUTF8);
 			if (form) {
 				CFArrayAppendValue(arrayFormula, form);
+        CFRelease(form);
 			}
-//      CFRelease(form);
-      
+     
 			// replace numerals with subscripts for display
 			if (arrayDisplayFormula) {
 				CFMutableStringRef displayFormula = CFStringCreateMutable(NULL, 0);
@@ -206,12 +209,11 @@ Boolean GetMetadataForFile(void* thisInterface,
 					ReplaceSubscripts(displayFormula);
           // OK, now add +/- and charge if needed
           if (mol.GetTotalCharge() != 0) {
-            // "+" in format ensures sign is included
-            CFStringAppendFormat(displayFormula, NULL, CFSTR("+%d"), mol.GetTotalCharge());
+            CFStringAppendFormat(displayFormula, NULL, CFSTR("%+d"), mol.GetTotalCharge());
             ReplaceSuperscripts(displayFormula);
-          }
+         }
 					CFArrayAppendValue(arrayDisplayFormula, displayFormula);
-//					CFRelease(displayFormula);
+					CFRelease(displayFormula);
 				}
 			} // end if(arrayDisplayFormula)
 		} // end if(arrayFormula)
@@ -228,7 +230,7 @@ Boolean GetMetadataForFile(void* thisInterface,
 			CFStringRef smilesRef = CFStringCreateWithCString(NULL, output.c_str(), kCFStringEncodingISOLatin1);
 			if (smilesRef) {
 				CFArrayAppendValue(arraySMILES, smilesRef);
-//				CFRelease(smilesRef);
+				CFRelease(smilesRef);
 			}
 		} // end SMILES
 		
@@ -242,7 +244,7 @@ Boolean GetMetadataForFile(void* thisInterface,
 			CFStringRef inchiRef = CFStringCreateWithCString(NULL, output.c_str(), kCFStringEncodingISOLatin1);
 			if (inchiRef) {
 				CFArrayAppendValue(arrayInChI, inchiRef);
-//				CFRelease(inchiRef);
+				CFRelease(inchiRef);
 			}
 		} // end InChI
 		
@@ -276,7 +278,7 @@ Boolean GetMetadataForFile(void* thisInterface,
 				sequenceRef = CFStringCreateWithCString(NULL, residueList.c_str(), kCFStringEncodingISOLatin1);
 				if (sequenceRef) {
 					CFArrayAppendValue(arraySequence, sequenceRef);
-//					CFRelease(sequenceRef);
+					CFRelease(sequenceRef);
 				}
 			}
 		} // end residue sequence
@@ -292,22 +294,22 @@ Boolean GetMetadataForFile(void* thisInterface,
 		// Number of atoms, bonds and residues
 		unsigned int count;
 		count = mol.NumAtoms();
-		tempNumberRef = CFNumberCreate(NULL, kCFNumberIntType, &count);
+		CFNumberRef tempNumberRef = CFNumberCreate(NULL, kCFNumberIntType, &count);
 		if (arrayNumAtoms && tempNumberRef) {
 			CFArrayAppendValue(arrayNumAtoms, tempNumberRef);
-//			CFRelease(tempNumberRef);
+			CFRelease(tempNumberRef);
 		}
 		count = mol.NumBonds();
 		tempNumberRef = CFNumberCreate(NULL, kCFNumberIntType, &count);
 		if (arrayNumAtoms && tempNumberRef) {
 			CFArrayAppendValue(arrayNumBonds, CFNumberCreate(NULL, kCFNumberIntType, &count));
-//			CFRelease(tempNumberRef);
+			CFRelease(tempNumberRef);
 		}
 		count = mol.NumResidues();
 		tempNumberRef = CFNumberCreate(NULL, kCFNumberIntType, &count);
 		if (arrayNumAtoms && tempNumberRef) {
 			CFArrayAppendValue(arrayNumResidues, CFNumberCreate(NULL, kCFNumberIntType, &count));
-//			CFRelease(tempNumberRef);
+			CFRelease(tempNumberRef);
 		}
 		
 		//////////////
@@ -336,7 +338,7 @@ Boolean GetMetadataForFile(void* thisInterface,
 	if (kindRef) {
 		CFDictionarySetValue(attributes, CFSTR("kMDItemKind"), kindRef);
 		CFDictionarySetValue(attributes, CFSTR("kMDItemDescription"), kindRef);
-//		CFRelease(kindRef);
+		CFRelease(kindRef);
 	}
 	
 	// set the kMDItemTitle attribute to the title if there's only one molecule
@@ -345,14 +347,14 @@ Boolean GetMetadataForFile(void* thisInterface,
 		CFStringRef titleRef = CFStringCreateWithCString(NULL, mol.GetTitle(), kCFStringEncodingISOLatin1);
 		if (titleRef) {
 			CFDictionarySetValue(attributes, CFSTR("kMDItemTitle"), titleRef);
-//			CFRelease(titleRef);
+			CFRelease(titleRef);
 		}
 		if (mol.HasData(OBGenericDataType::CommentData)) {
 			OBCommentData *cd = (OBCommentData*)mol.GetData(OBGenericDataType::CommentData);
 			CFStringRef commentRef = CFStringCreateWithCString(NULL, (cd->GetData()).c_str(), kCFStringEncodingISOLatin1);
 			if (commentRef) {
 				CFDictionarySetValue(attributes, CFSTR("kMDItemComment"), commentRef);
-//				CFRelease(commentRef);
+				CFRelease(commentRef);
 			}
 		} // commentData
 	} // single molecule
@@ -360,60 +362,61 @@ Boolean GetMetadataForFile(void* thisInterface,
 	// Add our arrays to the metadata store
 	if (textContent) {
 		CFDictionarySetValue(attributes, CFSTR("kMDItemTextContent"), textContent);
-//		CFRelease(textContent);
+		CFRelease(textContent);
 	}
 	CFNumberRef molCountRef = CFNumberCreate(NULL, kCFNumberIntType, &molCount);
 	if (molCountRef) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_NumMols"), molCountRef);
-//		CFRelease(molCountRef);
+		CFRelease(molCountRef);
 	}
 	if (arrayFormula) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_Formula"), arrayFormula);
-//		CFRelease(arrayFormula);
+		CFRelease(arrayFormula);
 	}
 	if (arrayDisplayFormula) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_DisplayFormula"), arrayDisplayFormula);
-//		CFRelease(arrayDisplayFormula);
+		CFRelease(arrayDisplayFormula);
 	}
 	if (arrayMass) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_Mass"), arrayMass);
-//		CFRelease(arrayMass);
+		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_ExactMass"), arrayMass);
+		CFRelease(arrayMass);
 	}
-	if (arrayExactMass) {
-		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_ExactMass"), arrayExactMass);
-//		CFRelease(arrayExactMass);
+	if (arrayDisplayMass) {
+		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_DisplayMass"), arrayDisplayMass);
+		CFRelease(arrayDisplayMass);
 	}
 	if (arraySMILES) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_SMILES"), arraySMILES);
-//		CFRelease(arraySMILES);
+		CFRelease(arraySMILES);
 	}
 	if (arrayInChI) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_InChI"), arrayInChI);
-//		CFRelease(arrayInChI);
+		CFRelease(arrayInChI);
 	}
 	if (arrayChirality) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_Chirality"), arrayChirality);
-//		CFRelease(arrayChirality);
+		CFRelease(arrayChirality);
 	}
 	if (arrayNumAtoms) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_NumAtoms"), arrayNumAtoms);
-//		CFRelease(arrayNumAtoms);
+		CFRelease(arrayNumAtoms);
 	}
 	if (arrayNumBonds) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_NumBonds"), arrayNumBonds);
-//		CFRelease(arrayNumBonds);
+		CFRelease(arrayNumBonds);
 	}
 	if (arrayNumResidues) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_NumResidues"), arrayNumResidues);
-//		CFRelease(arrayNumResidues);
+		CFRelease(arrayNumResidues);
 	}
 	if (arrayDimension) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_Dimension"), arrayDimension);
-//		CFRelease(arrayDimension);
+		CFRelease(arrayDimension);
 	}
 	if (arraySequence) {
 		CFDictionarySetValue(attributes, CFSTR("net_sourceforge_openbabel_Sequence"), arraySequence);
-//		CFRelease(arraySequence);
+		CFRelease(arraySequence);
 	}
 	
 	// return TRUE so that the attributes are imported
