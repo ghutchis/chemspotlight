@@ -6,14 +6,14 @@ Copyright (C) 2005-2006 by Geoffrey R. Hutchison
 ***********************************************************************/
 
 // superscript + and -
-#define UTF8_SUP_PLUS "\xE2\x81\x8A"
-#define UTF8_SUP_MINUS "\xE2\x81\x8B"
+#define UTF8_SUP_PLUS "\xE2\x81\xBA"
+#define UTF8_SUP_MINUS "\xE2\x81\xBB"
 
 // superscript numerals
 #define UTF8_SUP_0 "\xE2\x81\xB0"
-#define UTF8_SUP_1 "\xE2\x81\xB1"
-#define UTF8_SUP_2 "\xE2\x81\xB2"
-#define UTF8_SUP_3 "\xE2\x81\xB3"
+#define UTF8_SUP_1 "\xC2\xB9"
+#define UTF8_SUP_2 "\xC2\xB2"
+#define UTF8_SUP_3 "\xC2\xB3"
 #define UTF8_SUP_4 "\xE2\x81\xB4"
 #define UTF8_SUP_5 "\xE2\x81\xB5"
 #define UTF8_SUP_6 "\xE2\x81\xB6"
