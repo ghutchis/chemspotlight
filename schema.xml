@@ -123,7 +123,6 @@
         net_sourceforge_openbabel_Fingerprint
       </allattrs>
       <displayattrs>
-        net_sourceforge_openbabel_NumMols
         net_sourceforge_openbabel_DisplayFormula
         net_sourceforge_openbabel_DisplayMass
         net_sourceforge_openbabel_NumAtoms
@@ -266,14 +265,12 @@
         net_sourceforge_openbabel_Fingerprint
       </allattrs>
       <displayattrs>
-        net_sourceforge_openbabel_NumMols
         net_sourceforge_openbabel_DisplayFormula
         net_sourceforge_openbabel_DisplayMass
       </displayattrs>
     </type>
     <type name="com.gaussian.output">
       <allattrs>
-        net_sourceforge_openbabel_NumMols
         net_sourceforge_openbabel_Formula
         net_sourceforge_openbabel_DisplayFormula
         net_sourceforge_openbabel_Mass
@@ -289,14 +286,12 @@
         net_sourceforge_openbabel_Fingerprint
       </allattrs>
       <displayattrs>
-        net_sourceforge_openbabel_NumMols
         net_sourceforge_openbabel_DisplayFormula
         net_sourceforge_openbabel_DisplayMass
       </displayattrs>
     </type>
     <type name="com.gaussian.fchk">
       <allattrs>
-        net_sourceforge_openbabel_NumMols
         net_sourceforge_openbabel_Formula
         net_sourceforge_openbabel_DisplayFormula
         net_sourceforge_openbabel_Mass
@@ -312,11 +307,9 @@
         net_sourceforge_openbabel_Fingerprint
       </allattrs>
       <displayattrs>
-        net_sourceforge_openbabel_NumMols
         net_sourceforge_openbabel_DisplayFormula
         net_sourceforge_openbabel_DisplayMass
       </displayattrs>
     </type>
   </types>
 </schema>
-
